@@ -1,0 +1,50 @@
+#Crie um programa que leia nome, sexo e idade de várias pessoas,
+#guardando os dados da pessoa em um dicionário e todos os dicionários
+#em uma lista. No final mostre:
+#A)- Quantas pessoas foram cadastradas
+#B)- A média de idade do grupo
+#C)- Uma lista com todas as muleres
+#D)- Uma lista com todas as pessoas com idade acima da média
+
+pessoa = {}
+galera = []
+cadastradas = idade = 0
+mulheres = []
+while True:
+    pessoa['nome'] = str(input('Nome da pessoa: '))
+    while True:
+        pessoa['sexo'] = str(input('Sexo[M/F]: ')).upper()
+        if pessoa['sexo'] == 'F':
+            mulheres.append(pessoa['nome'])
+            break
+        elif pessoa['sexo'] == 'M':
+            break
+        elif pessoa['sexo'] not in 'MF':
+            print('Digite apenas M ou F')
+    pessoa['idade'] = int(input('Idade: '))
+    cadastradas += 1
+    idade += pessoa['idade']
+    media = idade / cadastradas
+    galera.append(pessoa.copy())
+    pessoa.clear()
+    while True:
+        esc = str(input('Deseja continuar [S/N]: ')).upper()
+        if esc == 'S':
+            break
+        elif esc == 'N':
+            break
+        elif esc not in 'SN':
+            print('Digite apenas S ou N')
+    if esc == 'N':
+        break
+print(galera)
+print(f'Foram cadastradas {cadastradas} pessoas')
+print(f'A média de idade do grupo foi de {media} anos')
+print('A mulheres cadastradas foram: ', end='')
+for c in mulheres:
+    print(f'{c}', end=' ')
+print()
+print(f'As pessoas com idade acima da média são: ')
+for c in galera:
+    if c['idade'] >= media:
+        print(f' => {c}')
